@@ -20,7 +20,7 @@ var words=JSON.parse(data);
 var bodyparser=require('body-parser');
 
 restService.post("/echo", function(req, res) {
-  var speech=words[req.body.queryResult.parameters.citalibro]["chapters"]["0"];
+  var speech=words["Rut"]["chapters"]["0"];
   var speech1 =
     req.body.queryResult &&
     req.body.queryResult.parameters &&

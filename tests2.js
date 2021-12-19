@@ -6,4 +6,4 @@ var bodyparser=require('body-parser');
 
 //console.log(words);
 
-console.log(words["Génesis"]["chapters"]["0"]);
+console.log(words["Rut"]["chapters"]["0"]);
