@@ -19,26 +19,13 @@ var data=fs.readFileSync('./data/biblia.json', 'utf8');
 var words=JSON.parse(data);
 var bodyparser=require('body-parser');
 
-var libro="";
-var capitulo="";
-var speech="";
-
 restService.post("/echo", function(req, res) {
-  libro='"'+req.body.queryResult.parameters.citalibro+'"';
-  capitulo='"'+req.body.queryResult.parameters.citacapitulo+'"';
+  libro=req.body.queryResult.parameters.citalibro;
+  capitulo=req.body.queryResult.parameters.citacapitulo;
+  versiculo=req.body.queryResult.parameters.citaversiculo;
 
-  var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+  speech = words[libro]["chapters"][capitulo]["verses"][versiculo];
 
-  for (let step = 1; step <= numVer; step++) {
-    speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
-  }
-
-  var speech1 =
-    req.body.queryResult &&
-    req.body.queryResult.parameters &&
-    req.body.queryResult.parameters.citalibro
-      ? req.body.queryResult.parameters.citalibro
-      : "Seems like some problem. Speak again."+req.body;
   return res.json({
 
   "fulfillmentText": speech,
