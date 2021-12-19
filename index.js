@@ -19,8 +19,20 @@ var data=fs.readFileSync('./data/biblia.json', 'utf8');
 var words=JSON.parse(data);
 var bodyparser=require('body-parser');
 
+var libro="";
+var capitulo="";
+var speech="";
+
 restService.post("/echo", function(req, res) {
-  var speech=words["Rut"]["chapters"]["0"];
+  libro=req.body.queryResult.parameters.citalibro;
+  capitulo=req.body.queryResult.parameters.citacapitulo;
+
+  var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+
+  for (let step = 1; step <= numVer; step++) {
+    speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
+  }
+
   var speech1 =
     req.body.queryResult &&
     req.body.queryResult.parameters &&

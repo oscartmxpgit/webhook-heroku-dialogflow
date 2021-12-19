@@ -33,13 +33,31 @@ for (key in words) {
 
   for (key in capitulos) {
     if (capitulos.hasOwnProperty(key)) {
-        console.log(key);
             if (key==="0" ){ //digamos que es el cap 1
                 versiculos=capitulos[key];
             }
         }
     }
 
-console.log(versiculos);
 
+var result;
 
+for (key in versiculos) {
+    if (versiculos.hasOwnProperty(key)) {
+
+            if (key==="verses" ){ //digamos que es el cap 1
+                result=versiculos[key];
+            }
+        }
+    }
+
+//console.log(result);
+
+for (key in result) {
+    if (result.hasOwnProperty(key)) {
+            if (key==="1" ){ //digamos que es el versículo 1
+                final=result[key];
+            }
+        }
+    }
+    console.log(versiculos);
