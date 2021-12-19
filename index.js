@@ -24,8 +24,8 @@ var capitulo="";
 var speech="";
 
 restService.post("/echo", function(req, res) {
-  libro=req.body.queryResult.parameters.citalibro;
-  capitulo=req.body.queryResult.parameters.citacapitulo;
+  libro='"'+req.body.queryResult.parameters.citalibro+'"';
+  capitulo='"'+req.body.queryResult.parameters.citacapitulo+'"';
 
   var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
 
