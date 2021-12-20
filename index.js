@@ -29,9 +29,15 @@ restService.post("/echo", function(req, res) {
 
   var libro=req.body.queryResult.parameters.citalibro;
   var capitulo=req.body.queryResult.parameters.citacapitulo;
-  var versiculo=req.body.queryResult.parameters.citaversiculo;
 
-  var speech = words[libro]["chapters"][capitulo]["verses"][versiculo];
+  var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+
+  var speech="";
+
+  for (let step = 1; step <= numVer; step++) {
+    speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
+  }
+
 
   return res.json({
 
