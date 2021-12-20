@@ -30,12 +30,19 @@ restService.post("/echo", function(req, res) {
   var libro=req.body.queryResult.parameters.citalibro;
   var capitulo=req.body.queryResult.parameters.citacapitulo - 1;
 
-  var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+  var numVer="";
 
   var speech="";
 
-  for (let step = 1; step <= numVer; step++) {
-    speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
+  try {
+    numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+
+    for (let step = 1; step <= numVer; step++) {
+      speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
+    }
+  }
+  catch(err) {
+    speech="No es una cita válida";
   }
 
 
