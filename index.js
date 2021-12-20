@@ -13,18 +13,25 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-var fs=require('fs');
-var data=fs.readFileSync('./data/biblia.json', 'utf8');
+restService.get("/prueba", function(req, res) {
+  console.log("aqui");
+  return res.json({
+    "satus":"ok"
 
-var words=JSON.parse(data);
-var bodyparser=require('body-parser');
+    });
+});
 
 restService.post("/echo", function(req, res) {
-  libro=req.body.queryResult.parameters.citalibro;
-  capitulo=req.body.queryResult.parameters.citacapitulo;
-  versiculo=req.body.queryResult.parameters.citaversiculo;
+  var fs=require('fs');
+  var data=fs.readFileSync('./data/biblia.json', 'utf8');
 
-  speech = words[libro]["chapters"][capitulo]["verses"][versiculo];
+  var words=JSON.parse(data);
+
+  var libro=req.body.queryResult.parameters.citalibro;
+  var capitulo=req.body.queryResult.parameters.citacapitulo;
+  var versiculo=req.body.queryResult.parameters.citaversiculo;
+
+  var speech = words[libro]["chapters"][capitulo]["verses"][versiculo];
 
   return res.json({
 
