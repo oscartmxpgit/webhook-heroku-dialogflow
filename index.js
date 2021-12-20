@@ -28,7 +28,7 @@ restService.post("/echo", function(req, res) {
   var words=JSON.parse(data);
 
   var libro=req.body.queryResult.parameters.citalibro;
-  var capitulo=req.body.queryResult.parameters.citacapitulo;
+  var capitulo=req.body.queryResult.parameters.citacapitulo - 1;
 
   var numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
 
