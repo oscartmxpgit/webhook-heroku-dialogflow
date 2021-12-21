@@ -38,7 +38,7 @@ restService.post("/echo", function(req, res) {
   var key="";
 
   try {
-    abreviacion=req.body.queryResult.parameters.citaabreviacion;
+    abreviacion=req.body.queryResult.parameters.citalibro;
     capitulo=req.body.queryResult.parameters.citacapitulo - 1;
 
     for (key in words) {
