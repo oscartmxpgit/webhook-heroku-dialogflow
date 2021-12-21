@@ -50,7 +50,7 @@ restService.post("/echo", function(req, res) {
     numVer=words[nombreLibro]["chapters"][capitulo]["ctd_verses"];
 
     for (let step = 1; step <= numVer; step++) {
-      speech += words[nombreLibro]["chapters"][capitulo]["verses"][step] + "\n";
+      speech += step + " " + words[nombreLibro]["chapters"][capitulo]["verses"][step] + "\n";
     }
 
     if (speech.length > 4095){
