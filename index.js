@@ -27,21 +27,30 @@ restService.post("/echo", function(req, res) {
 
   var words=JSON.parse(data);
 
-  var libro="";
+  var abreviacion="";
   var capitulo="";
+  var nombreLibro="";
 
   var numVer="";
 
   var speech="";
 
+  var key="";
+
   try {
-    libro=req.body.queryResult.parameters.citalibro;
+    abreviacion=req.body.queryResult.parameters.citaabreviacion;
     capitulo=req.body.queryResult.parameters.citacapitulo - 1;
 
-    numVer=words[libro]["chapters"][capitulo]["ctd_verses"];
+    for (key in words) {
+      if (words[key]["abreviacion"]===abreviacion ){
+        nombreLibro=key;
+      }
+    }
+
+    numVer=words[nombreLibro]["chapters"][capitulo]["ctd_verses"];
 
     for (let step = 1; step <= numVer; step++) {
-      speech += words[libro]["chapters"][capitulo]["verses"][step] + "\n";
+      speech += words[nombreLibro]["chapters"][capitulo]["verses"][step] + "\n";
     }
 
     if (speech.length > 4095){
